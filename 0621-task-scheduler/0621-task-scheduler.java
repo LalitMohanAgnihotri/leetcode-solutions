@@ -5,14 +5,15 @@ class Solution {
             freq[task-'A']++;
         }
         Arrays.sort(freq);
-        int maxFreq=freq[25];
+        int maxfreq = 0;
+        for (int f:freq) {
+            maxfreq=Math.max(maxfreq,f);
+        }
         int countMax=0;
         for (int f:freq) {
-            if (f==maxFreq) countMax++;
+            if (f==maxfreq) countMax++;
         }
-        int count=maxFreq-1;
-        int length= n+1;
-        int empty= count*length+countMax;
-        return Math.max(empty,tasks.length);
+        int need=(maxfreq-1)*(n+1)+countMax;
+        return Math.max(need,tasks.length);
     }
 }
