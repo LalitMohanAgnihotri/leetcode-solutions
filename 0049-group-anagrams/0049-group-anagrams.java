@@ -1,30 +1,33 @@
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-        List<List<String>>ans=new ArrayList<>();
-        boolean isgrp[]=new boolean[strs.length];
+        ArrayList<List<String>> ans=new ArrayList<>();
+        boolean isCheck[]=new boolean[strs.length];
         for(int i=0;i<strs.length;i++){
-            if(isgrp[i]) continue;
-            isgrp[i]=true;
-            int a[]=new int[26];
             ArrayList<String>al=new ArrayList<>();
-            for(int j=0;j<strs[i].length();j++){
-              a[strs[i].charAt(j)-'a']++;
-            } 
-            al.add(strs[i]);
+            if(isCheck[i])continue;
+            isCheck[i]=true;
+            String s=strs[i];
+            int freq1[]=new int[26];
+            for(int j=0;j<s.length();j++){
+                char ch=s.charAt(j);
+                freq1[ch-'a']++;
+            }
+            al.add(s);
             for(int j=i+1;j<strs.length;j++){
-                if(isgrp[j])continue;
-              int b[]=new int[26];
-              for(int k=0;k<strs[j].length();k++){
-                b[strs[j].charAt(k)-'a']++;
-              }
-              if(Arrays.equals(a,b)){
-                al.add(strs[j]);
-                isgrp[j]=true;
-              }
+                if(isCheck[j])continue;
+                int freq2[]=new int[26];
+                String str=strs[j];
+                for(int k=0;k<str.length();k++){
+                    char c=str.charAt(k);
+                    freq2[c-'a']++;
+                }
+                if(Arrays.equals(freq1,freq2)){
+                    isCheck[j]=true;
+                    al.add(str);
+                }
+
             }
             ans.add(al);
-           
-       } return ans;
-        
+        }return ans;
     }
 }
