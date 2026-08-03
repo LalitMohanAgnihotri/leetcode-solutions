@@ -1,33 +1,16 @@
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-        ArrayList<List<String>> ans=new ArrayList<>();
-        boolean isCheck[]=new boolean[strs.length];
-        for(int i=0;i<strs.length;i++){
-            ArrayList<String>al=new ArrayList<>();
-            if(isCheck[i])continue;
-            isCheck[i]=true;
-            String s=strs[i];
-            int freq1[]=new int[26];
-            for(int j=0;j<s.length();j++){
-                char ch=s.charAt(j);
-                freq1[ch-'a']++;
+        Map<String,List<String>>map=new HashMap<>();
+        for(String s:strs){
+            char arr[]=s.toCharArray();
+            Arrays.sort(arr);
+            String key=new String(arr);
+            if(!map.containsKey(key)){
+                map.put(key,new ArrayList<String>());
             }
-            al.add(s);
-            for(int j=i+1;j<strs.length;j++){
-                if(isCheck[j])continue;
-                int freq2[]=new int[26];
-                String str=strs[j];
-                for(int k=0;k<str.length();k++){
-                    char c=str.charAt(k);
-                    freq2[c-'a']++;
-                }
-                if(Arrays.equals(freq1,freq2)){
-                    isCheck[j]=true;
-                    al.add(str);
-                }
+            map.get(key).add(s);
 
-            }
-            ans.add(al);
-        }return ans;
+        }
+        return new ArrayList<>(map.values());
     }
 }
