@@ -4,6 +4,6 @@ class Solution {
         for(int i:nums){
             if(set.contains(i))return i;
             set.add(i);
-        }return 0;
+        }return -1;
     }
 }
