@@ -7,6 +7,6 @@ class Solution {
             if(nums[mid]>nums[j]){
                 i=mid+1;
             }else j=mid;
-        }return nums[j];
+        }return nums[i];
     }
 }
