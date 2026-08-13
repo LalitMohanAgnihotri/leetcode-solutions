@@ -1,11 +1,10 @@
 class Solution {
     public int minEatingSpeed(int[] piles, int h) {
         int i=1;
-        int j=Integer.MIN_VALUE;
-        for(int a:piles){
-            j=Math.max(j,a);
+        int j=0;
+        for(int k:piles){
+            j=Math.max(k,j);
         }
-
         while(i<j){
             int mid=i+(j-i)/2;
             if(canEat(piles,mid,h)){
@@ -13,16 +12,13 @@ class Solution {
             }else{
                 i=mid+1;
             }
-
-        }return j;
+        }return i;
     }
-    public boolean canEat(int[]nums,int mid,int h){
-        int hour=0;
+    public boolean canEat(int nums[],int mid,int h){
+        int time=0;
         for(int i=0;i<nums.length;i++){
-            hour+=Math.ceil((double)nums[i]/mid);
-            if(hour>h){
-                return false;
-            }
+            time+=Math.ceil((double)nums[i]/mid);
+            if(time>h)return false;
         }return true;
     }
 }
