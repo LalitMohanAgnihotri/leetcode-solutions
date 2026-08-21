@@ -12,7 +12,7 @@ class Solution {
         }
         if(nine==d.length){
             int ans[]=new int[d.length+1];
-            ans[d.length-1]=1;
+            ans[0]=1;
             return ans;
         }
         else return d;
