@@ -1,24 +1,24 @@
 class Solution {
     public String helper(String s){
+        char ch[]=s.toCharArray();
         StringBuilder ans=new StringBuilder();
-        char arr[]=s.toCharArray();
-        int c=1;
-        for(int i=1;i<arr.length;i++){
-            if(arr[i-1]==arr[i]){
-                c++;
+        int count=1;
+        for(int i=1;i<ch.length;i++){
+            if(ch[i-1]==ch[i]){
+                count++;
             }else{
-                ans.append(c);
-                ans.append(arr[i-1]);
-                c=1;
+                ans.append(count);
+                ans.append(ch[i-1]);
+                count=1;
             }
         }
-        ans.append(c);
-        ans.append(arr[arr.length-1]);
+        ans.append(count);
+        ans.append(ch[ch.length-1]);
         return ans.toString();
     }
     public String countAndSay(int n) {
         if(n==1)return "1";
-        String s=countAndSay(n-1); 
-        return helper(s);
+        String s=countAndSay(n-1);
+        return helper(s); 
     }
 }
