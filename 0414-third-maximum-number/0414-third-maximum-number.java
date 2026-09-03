@@ -2,12 +2,13 @@ class Solution {
     public int thirdMax(int[] nums) {
         PriorityQueue<Integer>pq=new PriorityQueue<>();
         int max=Integer.MIN_VALUE;
-        for(int i:nums){
-            if(!pq.contains(i))pq.add(i);
-            if(pq.size()>3)pq.poll();
-            max=Math.max(max,i);
+        for(int i=0;i<nums.length;i++){
+            if(!pq.contains(nums[i]))pq.add(nums[i]);
+            if(pq.size()>3){
+                pq.poll();
+            }
+            max=Math.max(max,nums[i]);
         }
-        if(pq.size()<3)return max;
-        return pq.peek();
+        return pq.size()<3?max:pq.peek();
     }
 }
